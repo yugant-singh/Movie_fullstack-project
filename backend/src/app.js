@@ -3,13 +3,20 @@ const app =express()
 const cookieParser = require("cookie-parser")
 const authRouter = require("../src/routes/auth.routes")
 const favourateRouter = require("../src/routes/favourate.routes")
+const historyRouter = require("../src/routes/history.routes")
+const tmdbRouter = require("../src/routes/tmdb.routes")
+const searchRouter = require("../src/routes/search.routes")
+const trailerRouter = require("../src/routes/trailer.routs")
 
 app.use(express.json())
 app.use(cookieParser())
 
 app.use("/api/auth",authRouter) 
 app.use("/api/favourate",favourateRouter)
-
+app.use("/api/history",historyRouter)
+app.use("/api",tmdbRouter)
+app.use("/api/search",searchRouter)
+app.use("/api/movie",trailerRouter)
 
 
 
