@@ -10,11 +10,13 @@ const searchRouter = require("../src/routes/search.routes")
 const trailerRouter = require("../src/routes/trailer.routs")
 
 app.use(express.json())
+app.use(express.static("./public"))
 app.use(cors({
     origin:"http://localhost:5173",
      credentials:true
 }))
 app.use(cookieParser())
+
 
 app.use("/api/auth",authRouter) 
 app.use("/api/favourate",favourateRouter)
