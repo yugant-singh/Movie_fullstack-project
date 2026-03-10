@@ -1,0 +1,62 @@
+@import '../../shared//styles/variable';
+@import '../../shared//styles/mixins';
+
+.trailer-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__box {
+    position: relative;
+    width: 80%;
+    max-width: 900px;
+    aspect-ratio: 16/9;
+    background: $bg-secondary;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid $border-color;
+    box-shadow: 0 0 40px rgba(0, 255, 135, 0.15);
+
+    @include tablet {
+      width: 95%;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid $neon-green;
+    color: $neon-green;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.9rem;
+    z-index: 10;
+    transition: all 0.2s;
+
+    &:hover {
+      background: $neon-green;
+      color: $bg-primary;
+    }
+  }
+
+  &__msg {
+    color: $text-secondary;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1rem;
+  }
+}

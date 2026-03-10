@@ -1,16 +1,31 @@
-import React, { useState } from 'react'
-import {Link} from 'react-router-dom'
+import React, { use, useState } from 'react'
+import {Link,useNavigate} from 'react-router-dom'
+import {useAuth} from '../hooks/useAuth'
+import ApiLoader from '../../shared/loader/ApiLoader'
 const Login = () => {
+  const {loading,user,handleLogin} = useAuth()
+const navigate  = useNavigate()
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+
+ async  function handleSubmit(e){
+e.preventDefault()
+await handleLogin({email,password})
+navigate("/")
+
+  }
+
+  if(loading){
+    return <ApiLoader/>
+  }
 
   return (
     
     <div className='container'>
       <h1>Login</h1>
       <div className="form-container">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="email">Email:</label>
             <input 

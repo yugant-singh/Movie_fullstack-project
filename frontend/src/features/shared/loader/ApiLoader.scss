@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400&display=swap');
+
+// ── Variables ──────────────────────────────
+$gold:     #e8b84b;
+$gold-dim: #7a5e1a;
+$bg:       #07070a;
+
+// ── Wrapper (inline, use anywhere) ─────────
+.api-loader {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+// ── Orbiting Dots ──────────────────────────
+.api-orbit {
+  width: 48px;
+  height: 48px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.api-core {
+  width: 10px;
+  height: 10px;
+  background: $gold;
+  border-radius: 50%;
+  box-shadow: 0 0 12px $gold, 0 0 24px rgba(232, 184, 75, 0.35);
+  animation: core-pulse 1.6s ease-in-out infinite;
+}
+
+.api-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: $gold;
+
+  &--lg {
+    width: 6px;
+    height: 6px;
+    animation: orbit-lg 1.8s linear infinite;
+    opacity: 0.9;
+  }
+
+  &--sm {
+    width: 4px;
+    height: 4px;
+    animation: orbit-sm 1.2s linear infinite;
+    opacity: 0.55;
+  }
+
+  @for $i from 1 through 3 {
+    &--lg:nth-of-type(#{$i + 1}) {
+      animation-delay: #{($i - 1) * -0.6}s;
+    }
+  }
+
+  @for $i from 1 through 2 {
+    &--sm:nth-of-type(#{$i + 4}) {
+      animation-delay: #{($i - 1) * -0.6}s;
+    }
+  }
+}
+
+// ── Optional label ─────────────────────────
+.api-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  color: $gold-dim;
+  text-transform: uppercase;
+}
+
+// ── Keyframes ──────────────────────────────
+@keyframes core-pulse {
+  0%, 100% { transform: scale(1);    box-shadow: 0 0 12px $gold, 0 0 24px rgba(232,184,75,0.3); }
+  50%       { transform: scale(1.25); box-shadow: 0 0 18px $gold, 0 0 36px rgba(232,184,75,0.5); }
+}
+
+@keyframes orbit-lg {
+  0%   { transform: rotate(0deg)   translateX(22px); }
+  100% { transform: rotate(360deg) translateX(22px); }
+}
+
+@keyframes orbit-sm {
+  0%   { transform: rotate(0deg)   translateX(14px); }
+  100% { transform: rotate(360deg) translateX(14px); }
+}

@@ -3,7 +3,7 @@ import { AuthContext } from '../auth.context'
 import { useContext } from 'react'
 
 
-export async function useAuth() {
+export  function useAuth() {
     const context = useContext(AuthContext)
     const { loading, setLoading, user, setUser } = context
 
@@ -21,7 +21,7 @@ export async function useAuth() {
         }
 
     }
-    const handleLogin = async () => {
+    const handleLogin = async ({email,password}) => {
         try {
             setLoading(true)
             const response = await login({ email, password })
@@ -60,5 +60,5 @@ export async function useAuth() {
     }
 
 
-    return {loading,user,handleRegister,handleLogin,handleLogout,handleGetMe}
+    return ({loading,user,handleRegister,handleLogin,handleLogout,handleGetMe})
 }

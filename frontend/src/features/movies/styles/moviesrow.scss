@@ -1,0 +1,61 @@
+@import '../../shared//styles/variable';
+@import '../../shared//styles/mixins';
+
+
+.movies-row {
+  padding: 2rem 3rem;
+
+  @include tablet {
+    padding: 1.5rem 1.5rem;
+  }
+
+  @include mobile {
+    padding: 1rem 1rem;
+  }
+
+  &__title {
+    color: $text-primary;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    position: relative;
+    display: inline-block;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 40%;
+      height: 2px;
+      background: $neon-green;
+      box-shadow: 0 0 10px rgba(0, 255, 135, 0.6);
+    }
+
+    @include mobile {
+      font-size: 1.1rem;
+    }
+  }
+
+  &__scroll {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $bg-card;
+      border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $neon-green;
+      border-radius: 2px;
+    }
+  }
+}

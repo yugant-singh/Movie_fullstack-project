@@ -1,0 +1,148 @@
+@import '../../shared//styles//variable';
+@import '../../shared//styles//mixins';
+
+.movie-detail {
+  position: relative;
+  min-height: 100vh;
+  background: $bg-primary;
+
+  &__backdrop {
+    position: fixed;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.95) 100%
+    );
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 3rem;
+    padding: 8rem 5rem 4rem;
+    align-items: flex-start;
+
+    @include tablet {
+      flex-direction: column;
+      padding: 6rem 2rem 3rem;
+      align-items: center;
+    }
+
+    @include mobile {
+      padding: 5rem 1rem 2rem;
+    }
+  }
+
+  &__poster {
+    width: 280px;
+    border-radius: 16px;
+    box-shadow: 0 0 40px rgba(0, 255, 135, 0.2);
+    flex-shrink: 0;
+
+    @include tablet {
+      width: 200px;
+    }
+
+    @include mobile {
+      width: 160px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    max-width: 600px;
+
+    h1 {
+      color: $text-primary;
+      font-size: 2.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+
+      @include tablet {
+        font-size: 2rem;
+        text-align: center;
+      }
+
+      @include mobile {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  &__rating {
+    color: $neon-green;
+    font-size: 1.1rem;
+    font-weight: 600;
+
+    @include tablet {
+      text-align: center;
+    }
+  }
+
+  &__desc {
+    color: $text-secondary;
+    font-size: 0.95rem;
+    line-height: 1.7;
+
+    @include tablet {
+      text-align: center;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+
+    @include tablet {
+      justify-content: center;
+    }
+
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__btn {
+    padding: 0.7rem 1.8rem;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+
+    &--primary {
+      background: $neon-green;
+      color: $bg-primary;
+
+      &:hover {
+        background: $neon-blue;
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+      }
+    }
+
+    &--secondary {
+      background: transparent;
+      border: 1px solid $neon-green;
+      color: $neon-green;
+
+      &:hover {
+        background: rgba(0, 255, 135, 0.1);
+        box-shadow: 0 0 20px rgba(0, 255, 135, 0.3);
+      }
+    }
+  }
+}

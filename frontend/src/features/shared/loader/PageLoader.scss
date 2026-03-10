@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400&display=swap');
+
+// ── Variables ──────────────────────────────
+$bg:       #07070a;
+$gold:     #e8b84b;
+$gold-dim: #7a5e1a;
+$muted:    #2e2e38;
+$white:    #f0ede8;
+
+// ── Overlay ────────────────────────────────
+.page-loader-overlay {
+  position: fixed;
+  inset: 0;
+  background: $bg;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  z-index: 9999;
+
+  // ambient glow
+  &::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(232,184,75,0.07) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: glow-pulse 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+}
+
+// ── Film Strip ─────────────────────────────
+.film-strip {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.film-frame {
+  width: 40px;
+  height: 56px;
+  border: 1.5px solid $gold-dim;
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+  animation: frame-flicker 1.8s ease-in-out infinite;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0px, transparent 4px,
+      $bg 4px, $bg 8px
+    );
+  }
+
+  &::before { top: 0; }
+  &::after  { bottom: 0; }
+
+  .film-frame-inner {
+    position: absolute;
+    inset: 9px 3px;
+    border-radius: 1px;
+  }
+
+  @for $i from 1 through 5 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{($i - 1) * 0.18}s;
+    }
+  }
+
+  &:nth-child(1) .film-frame-inner { background: linear-gradient(135deg, #1a0a0a, #3d1515); }
+  &:nth-child(2) .film-frame-inner { background: linear-gradient(135deg, #0a1020, #1a2d4a); }
+  &:nth-child(3) .film-frame-inner { background: linear-gradient(135deg, #100818, #2a1040); }
+  &:nth-child(4) .film-frame-inner { background: linear-gradient(135deg, #080f0a, #142018); }
+  &:nth-child(5) .film-frame-inner { background: linear-gradient(135deg, #181008, #3a2810); }
+}
+
+// ── Text + Progress ────────────────────────
+.page-loader-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-loader-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 20px;
+  letter-spacing: 0.55em;
+  color: $white;
+  opacity: 0.85;
+}
+
+.page-loader-track {
+  width: 200px;
+  height: 1.5px;
+  background: $muted;
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.page-loader-bar {
+  position: absolute;
+  height: 100%;
+  width: 55%;
+  left: -55%;
+  background: linear-gradient(90deg, transparent, $gold, $gold-dim);
+  animation: sweep 2s ease-in-out infinite;
+}
+
+// ── Keyframes ──────────────────────────────
+@keyframes frame-flicker {
+  0%, 100% { border-color: $gold-dim; opacity: 0.45; }
+  50%       { border-color: $gold;     opacity: 1;    }
+}
+
+@keyframes sweep {
+  0%   { left: -55%; }
+  100% { left: 140%; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { transform: scale(1);   opacity: 0.6; }
+  50%       { transform: scale(1.2); opacity: 1;   }
+}

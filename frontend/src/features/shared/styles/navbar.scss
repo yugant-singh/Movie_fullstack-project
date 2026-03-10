@@ -1,0 +1,169 @@
+@import './variable';
+@import './mixins';
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background-color: $bg-secondary;
+  border-bottom: 1px solid $border-color;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  &__logo {
+    a {
+      color: $neon-green;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+  }
+
+  &__links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include tablet {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 65px;
+      left: 0;
+      width: 100%;
+      background-color: $bg-secondary;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid $border-color;
+      gap: 1.2rem;
+
+      &.open {
+        display: flex;
+      }
+    }
+
+    a {
+      color: $text-secondary;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+
+      &:hover {
+        color: $neon-blue;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    @include mobile {
+      gap: 0.5rem;
+    }
+  }
+
+  &__search {
+    background: $bg-card;
+    border: 1px solid $border-color;
+    border-radius: 20px;
+    padding: 0.4rem 1rem;
+    color: $text-primary;
+    outline: none;
+    width: 180px;
+    transition: border 0.2s;
+
+    @include tablet {
+      width: 130px;
+    }
+
+    @include mobile {
+      width: 90px;
+      padding: 0.4rem 0.7rem;
+    }
+
+    &:focus {
+      border-color: $neon-blue;
+    }
+
+    &::placeholder {
+      color: $text-secondary;
+    }
+  }
+
+  &__btn {
+    background: transparent;
+    border: 1px solid $neon-green;
+    color: $neon-green;
+    padding: 0.4rem 1.2rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.2s;
+
+    @include mobile {
+      padding: 0.3rem 0.8rem;
+      font-size: 0.8rem;
+    }
+
+    &:hover {
+      background: $neon-green;
+      color: $bg-primary;
+    }
+  }
+
+  &__hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+
+    @include tablet {
+      display: flex;
+    }
+
+    span {
+      display: block;
+      width: 25px;
+      height: 2px;
+      background-color: $neon-green;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+  }
+  &__user {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  cursor: pointer;
+}
+
+&__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: $neon-green;
+  color: $bg-primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+&__username {
+  color: $text-primary;
+  font-size: 0.9rem;
+
+  @include tablet {
+    display: none;
+  }
+}
+}
+
